@@ -25,12 +25,16 @@ public class Stack<T> {
     {
         this.max_size = size;
     }
-    
+    public boolean isEmpty()
+    {
+        return (size<=0)?true:false;
+    }
     public void push(T data)
     {
         if(size == 0)
         {
             stack = new Node(data);
+            size++;
         }
         else if(size == max_size)
         {
@@ -41,6 +45,7 @@ public class Stack<T> {
             Node<T> temp = new Node(data);
             temp.next = stack;
             stack = temp;
+            size++;
         }
     }
     public  T peek()
@@ -65,6 +70,7 @@ public class Stack<T> {
         {
             T result = stack.data;
             stack = stack.next;
+            size--;
             return result;
         }
     }
