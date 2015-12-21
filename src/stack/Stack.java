@@ -29,6 +29,10 @@ public class Stack<T> {
     {
         return (size<=0)?true:false;
     }
+    public int length ()
+    {
+        return size;
+    }
     public void push(T data)
     {
         if(size == 0)

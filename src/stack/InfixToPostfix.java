@@ -6,17 +6,18 @@
 
 package stack;
 
+import utils.OperationUtils;
+
 /**
  *
  * @author bavudaia
  */
 public class InfixToPostfix {
     public static void main(String[] args) {
-        String infix = "a*(b*d+c)";
+        String infix = "a*(b*d+c)+((x+y)*z)";
         InfixToPostfix obj = new InfixToPostfix();
         String result = obj.convert(infix);
         System.out.println(result);
-                
     }
     
     public String convert(String infix)
@@ -27,18 +28,18 @@ public class InfixToPostfix {
         for(int i=0;i<len;i++)
         {
             char ch = infix.charAt(i);
-            if(isOperand(ch) )
+            if(OperationUtils.isOperand(ch) )
             {
                 postfix += ch;
             }
-            else if(isOperator(ch))
+            else if(OperationUtils.isOperator(ch))
             {
                 if(stack.isEmpty())
                     stack.push(ch);
                 else
                 {
                     char last = stack.peek();
-                    while(!isOpenBracket(last) && priority(last) > priority(ch) )
+                    while(!OperationUtils.isOpenBracket(last) && OperationUtils.priority(last) > OperationUtils.priority(ch) )
                     {
                         char operator = stack.pop();
                         postfix+=operator;
@@ -49,13 +50,13 @@ public class InfixToPostfix {
                     stack.push(ch);
                 }
             }
-            else if(isOpenBracket(ch))
+            else if(OperationUtils.isOpenBracket(ch))
             {
                 stack.push(ch);
             }
-            else if(isCloseBracket(ch))
+            else if(OperationUtils.isCloseBracket(ch))
             {
-                char open = getOpenBracket(ch);
+                char open = OperationUtils.getOpenBracket(ch);
                 while(!stack.isEmpty() && stack.peek() != open)
                 {
                     postfix += stack.pop();
@@ -69,44 +70,5 @@ public class InfixToPostfix {
         }
         
         return postfix;
-    }
-    public int priority(char ch)
-    {
-        if(ch == '+' || ch == '-')
-            return 1;
-        else if(ch == '*' || ch == '/')
-            return 2;
-        else
-            return 0;
-    }
-    public boolean isOperand(char ch)
-    {
-        
-       return !isOperator(ch) && !isOpenBracket(ch) && !isCloseBracket(ch);
-    }
-    public boolean isOperator(char ch)
-    {
-        return ((ch == '+') || (ch == '-') || (ch == '*') || (ch == '/'));
-        
-    }
-    
-    public boolean isOpenBracket(char ch)
-    {
-        return ((ch == '(') ||  (ch == '{')|| (ch == '['));
-    }
-    public boolean isCloseBracket(char ch)
-    {
-        return ( (ch == ')') || (ch == '}') || (ch == ']'));
-    }
-    public char getOpenBracket(char ch)
-    {
-        switch(ch)
-        {
-            case '}': return '{'; 
-            case  ')' : return '('; 
-            case ']' : return '[';
-            default : return '\t';
-        }
-       
     }
 }
