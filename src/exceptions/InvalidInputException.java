@@ -16,4 +16,8 @@ public class InvalidInputException extends RuntimeException{
         System.out.println("Invalid Input");
     }
     
+    public InvalidInputException(String msg)
+    {
+        super(msg);
+    }
 }

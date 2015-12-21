@@ -18,7 +18,7 @@ public class PostfixToInfix {
         PostfixToInfix obj = new PostfixToInfix();
         //String infix = "2*3+4*5*8/(2+2)";
         String postfix = "23*45822+/**+";
-        
+        //functions call
         int result = obj.evaluvate(postfix);
         System.out.println(result);
     }
