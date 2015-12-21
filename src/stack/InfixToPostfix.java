@@ -20,7 +20,7 @@ public class InfixToPostfix {
         String postfix= "";
         Stack<Character> stack = new Stack(100);
         Character peek = stack.peek();
-        
+        // nonsense
         return postfix;
     }
     
