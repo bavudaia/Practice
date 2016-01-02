@@ -37,12 +37,12 @@ public class BalancedParanthesis {
                 stack.push(ch);
             }
             else if(OperationUtils.isCloseBracket(ch))
-            {
-                char openExpected = OperationUtils.getOpenBracket(ch);
+            {              
                 if(stack.isEmpty())
                     return false;
                 else
                 {
+                    char openExpected = OperationUtils.getOpenBracket(ch);
                     char openActual = stack.pop();
                     if(openActual != openExpected)
                     {
@@ -56,4 +56,6 @@ public class BalancedParanthesis {
         else
             return false;
     }
+    
+
 }
